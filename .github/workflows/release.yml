@@ -14,7 +14,9 @@ jobs:
         with:
           fetch-depth: 1
       - name: build
-        run: ./release.sh
+        run: |
+          chmod +x ./release.sh
+          ./release.sh
       - name: hash
         run: echo ${{ github.sha }} > release.sha
       - name: release
