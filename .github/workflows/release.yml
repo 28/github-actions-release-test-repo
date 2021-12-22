@@ -2,10 +2,6 @@ name: Publish a new release from tag
 
 on:
   workflow_dispatch:
-    inputs:
-      tag_name:
-        description: 'The name of the tag to perform the release from'
-        required: true
 
 jobs:
   build:
@@ -14,7 +10,6 @@ jobs:
       - name: checkout
         uses: actions/checkout@v2
         with:
-          ref: ${{ github.events.inputs.tag_name }}
           fetch-depth: 1
       - name: build
         run: |
