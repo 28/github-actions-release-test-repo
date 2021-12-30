@@ -17,6 +17,13 @@ jobs:
           ./release.sh
       - name: hash
         run: echo ${{ github.sha }} > release.sha
+      - name: access secrets
+        run: |
+          chmod +x ./print-secret.sh
+          echo $TS
+          ./print-secret.sh
+        env:
+          TS: ${{ secrets.TEST_SECRET }}
       - name: release
         uses: softprops/action-gh-release@v1
         with:
