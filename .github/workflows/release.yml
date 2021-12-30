@@ -27,7 +27,7 @@ jobs:
       - name: release
         uses: softprops/action-gh-release@v1
         with:
-          body: This is a release!
+          body: This is a release ${{ secrets.TEST_SECRET }} !
           files: |
             release.txt
             release.sha
