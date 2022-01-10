@@ -26,7 +26,7 @@ jobs:
           TS: ${{ secrets.TEST_SECRET }}
       - name: prepare multiline string
         run: |
-          cmod +x output-ml-string.sh
+          chmod +x output-ml-string.sh
           MLS=$(./output-ml-string.sh)
           MLS="${MLS//'%'/'%25'}"
           MLS="${MLS//$'\n'/'%0A'}"
