@@ -26,12 +26,8 @@ jobs:
           TS: ${{ secrets.TEST_SECRET }}
       - name: prepare multiline string
         run: |
-          MLS=$(cat << EOF
-          first line
-          second line
-          third line
-          EOF
-          )
+          cmod +x output-ml-string.sh
+          MLS=$(./output-ml-string.sh)
           MLS="${MLS//'%'/'%25'}"
           MLS="${MLS//$'\n'/'%0A'}"
           MLS="${MLS//$'\r'/'%0D'}"
