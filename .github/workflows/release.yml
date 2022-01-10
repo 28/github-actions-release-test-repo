@@ -24,12 +24,23 @@ jobs:
           ./print-secret.sh
         env:
           TS: ${{ secrets.TEST_SECRET }}
+      - name: prepare multiline string
+        run: |
+          MLS=$(cat << EOF
+          first line
+          second line
+          third line
+          EOF
+          )
+          MLS="${MY_STRING//'%'/'%25'}"
+          MLS="${MY_STRING//$'\n'/'%0A'}"
+          MLS="${MY_STRING//$'\r'/'%0D'}"
+          echo "::set-output name=content::$MLS"
+        id: prepare-multiline
       - name: release
         uses: softprops/action-gh-release@v1
         with:
-          body: This is a release ${TS} !
+          body: This is a release ${{ steps.prepare-multiline.outputs.content }}!
           files: |
             release.txt
             release.sha
-        env:
-          TS: ${{ secrets.TEST_SECRET }}
