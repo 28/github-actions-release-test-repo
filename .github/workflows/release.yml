@@ -32,9 +32,9 @@ jobs:
           third line
           EOF
           )
-          MLS="${MY_STRING//'%'/'%25'}"
-          MLS="${MY_STRING//$'\n'/'%0A'}"
-          MLS="${MY_STRING//$'\r'/'%0D'}"
+          MLS="${MLS//'%'/'%25'}"
+          MLS="${MLS//$'\n'/'%0A'}"
+          MLS="${MLS//$'\r'/'%0D'}"
           echo "::set-output name=content::$MLS"
         id: prepare-multiline
       - name: release
