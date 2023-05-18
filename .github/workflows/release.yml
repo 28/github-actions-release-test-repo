@@ -17,10 +17,11 @@ jobs:
           ./release.sh
       - name: hash
         run: echo ${{ github.sha }} > release.sha
-      - name: get-release-version
+      - name: get release version
         run: |
           echo $GITHUB_REF
-          echo "R_V=Ver${GITHUB_REF/refs\/tags\//}" >> "$GITHUB_OUTPUT"
+          echo "R_V=Ver_${GITHUB_REF/refs\/tags\//}" >> "$GITHUB_OUTPUT"
+        id: get-release-version
       - name: access secrets
         run: |
           chmod +x ./print-secret.sh
