@@ -17,6 +17,8 @@ jobs:
           ./release.sh
       - name: hash
         run: echo ${{ github.sha }} > release.sha
+      - name: get-release-version
+        run: echo "R_V=Ver_${GITHUB_REF/refs\/tags\//}" >> "$GITHUB_OUTPUT"
       - name: access secrets
         run: |
           chmod +x ./print-secret.sh
@@ -35,7 +37,7 @@ jobs:
       - name: release
         uses: softprops/action-gh-release@v1
         with:
-          body: This is a release ${{ steps.prepare-multiline.outputs.content }}!
+          body: This is a release ${{ steps.get-release-version.outputs.R_V }} ${{ steps.prepare-multiline.outputs.content }}!
           files: |
             release.txt
             release.sha
