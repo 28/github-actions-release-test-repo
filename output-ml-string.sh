@@ -1,1 +1,1 @@
-echo -e "first line\nsecond line\nthird lione"
+echo -e "first line\nsecond line\nthird line"

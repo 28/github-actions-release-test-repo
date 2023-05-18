@@ -27,11 +27,9 @@ jobs:
       - name: prepare multiline string
         run: |
           chmod +x output-ml-string.sh
-          MLS=$(./output-ml-string.sh)
-          MLS="${MLS//'%'/'%25'}"
-          MLS="${MLS//$'\n'/'%0A'}"
-          MLS="${MLS//$'\r'/'%0D'}"
-          echo "content=$MLS" >> "$GITHUB_OUTPUT"
+          echo "content<<$EOF" >> "$GITHUB_OUTPUT"
+          ./output-ml-string.sh >> "$GITHUB_OUTPUT"
+          echo "$EOF" >> "$GITHUB_OUTPUT"
         id: prepare-multiline
       - name: release
         uses: softprops/action-gh-release@v1
