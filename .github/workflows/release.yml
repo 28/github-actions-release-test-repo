@@ -31,7 +31,7 @@ jobs:
           MLS="${MLS//'%'/'%25'}"
           MLS="${MLS//$'\n'/'%0A'}"
           MLS="${MLS//$'\r'/'%0D'}"
-          echo "content=${MLS}" >> "$GITHUB_OUTPUT"
+          echo "content=$MLS" >> "$GITHUB_OUTPUT"
         id: prepare-multiline
       - name: release
         uses: softprops/action-gh-release@v1
