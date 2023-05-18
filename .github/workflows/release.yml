@@ -27,6 +27,7 @@ jobs:
       - name: prepare multiline string
         run: |
           chmod +x output-ml-string.sh
+          EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
           echo "content<<$EOF" >> "$GITHUB_OUTPUT"
           ./output-ml-string.sh >> "$GITHUB_OUTPUT"
           echo "$EOF" >> "$GITHUB_OUTPUT"
